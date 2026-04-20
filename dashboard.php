@@ -125,9 +125,9 @@ $verifyStatus = $userData ? $userData['verify_status'] : 'Unverified';
         </div>
     </main>
 
-    <div class="chat-btn">
+    <div class="talk-btn">
         <div style="width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;"></div>
-        <a href="chat.php">Chat</a> <i class="fa-solid fa-comment"></i>
+        <a href="talk.php">Talk</a> <i class="fa-solid fa-comment"></i>
     </div>
     <script>
         i = true

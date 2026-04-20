@@ -171,7 +171,7 @@ if ($verifyStatus !== 'Verified') {
         <footer>Copyright © firstworldchoice.com 2026</footer>
     </div>
 
-    <div class="chat-btn">
+    <div class="talk-btn">
         <div style="width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;"></div>
         Chat <i class="fa-solid fa-comment"></i>
     </div>

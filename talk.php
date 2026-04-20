@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Chat | Firstworldchoice</title>
+    <title>Support Talk | Firstworldchoice</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             overflow: hidden;
         }
 
-        .chat-container {
+        .talk-container {
             display: flex;
             height: 100vh;
         }
@@ -73,15 +73,15 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             width: 20px;
         }
 
-        /* Main Chat Area */
-        .main-chat {
+        /* Main Talk Area */
+        .main-talk {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: white;
         }
 
-        .chat-header {
+        .talk-header {
             background: linear-gradient(135deg, #0d3b36 0%, #1a5f58 100%);
             color: white;
             padding: 20px 30px;
@@ -91,19 +91,19 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             justify-content: space-between;
         }
 
-        .chat-header h2 {
+        .talk-header h2 {
             font-size: 18px;
             font-weight: 600;
         }
 
-        .chat-header .status {
+        .talk-header .status {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
         }
 
-        .chat-header .status .dot {
+        .talk-header .status .dot {
             width: 8px;
             height: 8px;
             background: #10b981;
@@ -116,8 +116,8 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             50% { opacity: 0.5; }
         }
 
-        /* Chat Messages */
-        .chat-messages {
+        /* Talk Messages */
+        .talk-messages {
             flex: 1;
             padding: 30px;
             overflow-y: auto;
@@ -181,8 +181,8 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             text-align: right;
         }
 
-        /* Chat Input */
-        .chat-input {
+        /* Talk Input */
+        .talk-input {
             background: white;
             padding: 25px 30px;
             border-top: 1px solid #e5e7eb;
@@ -191,7 +191,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             align-items: center;
         }
 
-        .chat-input input {
+        .talk-input input {
             flex: 1;
             padding: 15px 20px;
             border: 2px solid #e5e7eb;
@@ -201,11 +201,11 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             transition: border-color 0.3s ease;
         }
 
-        .chat-input input:focus {
+        .talk-input input:focus {
             border-color: #0d3b36;
         }
 
-        .chat-input button {
+        .talk-input button {
             background: linear-gradient(135deg, #0d3b36 0%, #1a5f58 100%);
             color: white;
             border: none;
@@ -219,11 +219,11 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             gap: 8px;
         }
 
-        .chat-input button:hover {
+        .talk-input button:hover {
             transform: translateY(-2px);
         }
 
-        .chat-input button i {
+        .talk-input button i {
             font-size: 16px;
         }
 
@@ -257,11 +257,11 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 display: block;
             }
 
-            .main-chat {
+            .main-talk {
                 width: 100%;
             }
 
-            .chat-messages {
+            .talk-messages {
                 padding: 20px;
                 gap: 15px;
             }
@@ -272,32 +272,32 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 padding: 12px 16px;
             }
 
-            .chat-input {
+            .talk-input {
                 padding: 20px;
                 gap: 10px;
             }
 
-            .chat-input input {
+            .talk-input input {
                 padding: 12px 16px;
                 font-size: 14px;
             }
 
-            .chat-input button {
+            .talk-input button {
                 padding: 12px 20px;
                 font-size: 14px;
             }
 
-            .chat-header {
+            .talk-header {
                 padding: 15px 20px;
             }
 
-            .chat-header h2 {
+            .talk-header h2 {
                 font-size: 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .chat-messages {
+            .talk-messages {
                 padding: 15px;
             }
 
@@ -307,37 +307,37 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 font-size: 13px;
             }
 
-            .chat-input {
+            .talk-input {
                 padding: 15px;
                 flex-direction: column;
                 gap: 10px;
             }
 
-            .chat-input input {
+            .talk-input input {
                 width: 100%;
             }
 
-            .chat-input button {
+            .talk-input button {
                 width: 100%;
                 justify-content: center;
             }
         }
 
         /* Scrollbar Styling */
-        .chat-messages::-webkit-scrollbar {
+        .talk-messages::-webkit-scrollbar {
             width: 6px;
         }
 
-        .chat-messages::-webkit-scrollbar-track {
+        .talk-messages::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
 
-        .chat-messages::-webkit-scrollbar-thumb {
+        .talk-messages::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 3px;
         }
 
-        .chat-messages::-webkit-scrollbar-thumb:hover {
+        .talk-messages::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
 
@@ -358,7 +358,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
     </style>
 </head>
 <body>
-    <div class="chat-container">
+    <div class="talk-container">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="logo">
@@ -372,14 +372,14 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 <a href="withdraw.php"><i class="fa-solid fa-money-bill-transfer"></i> Withdrawal</a>
                 <a href="trans.html"><i class="fa-solid fa-earth-americas"></i> Transfer</a>
                 <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
-                <a href="chat.php" class="active"><i class="fa-solid fa-comments"></i> Live Support</a>
+                <a href="talk.php" class="active"><i class="fa-solid fa-comments"></i> Live Support</a>
                 <a href="backend/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </nav>
         </aside>
 
-        <!-- Main Chat Area -->
-        <main class="main-chat">
-            <header class="chat-header">
+        <!-- Main Talk Area -->
+        <main class="main-talk">
+            <header class="talk-header">
                 <button class="mobile-menu-toggle" onclick="toggleSidebar()">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -390,11 +390,11 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 </div>
             </header>
 
-            <div class="chat-messages" id="chat-history">
+            <div class="talk-messages" id="talk-history">
                 <!-- Messages will be loaded here -->
             </div>
 
-            <div class="chat-input">
+            <div class="talk-input">
                 <input type="text" id="user-msg" placeholder="Describe your issue..." onkeypress="handleKeyPress(event)">
                 <button onclick="sendMsg()">
                     <i class="fa-solid fa-paper-plane"></i>
@@ -418,10 +418,10 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
         }
 
         function fetchMessages() {
-            fetch(`backend/chat_handler.php?action=fetch&user_id=${userId}`)
+            fetch(`backend/talk_handler.php?action=fetch&user_id=${userId}`)
                 .then(r => r.text())
                 .then(html => {
-                    const history = document.getElementById('chat-history');
+                    const history = document.getElementById('talk-history');
                     history.innerHTML = html;
                     history.scrollTop = history.scrollHeight; // Auto-scroll to bottom
                 })
@@ -446,7 +446,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
             formData.append('sender', 'user');
             formData.append('message', text);
 
-            fetch('backend/chat_handler.php?action=send', {
+            fetch('backend/talk_handler.php?action=send', {
                 method: 'POST',
                 body: formData
             })
@@ -488,3 +488,4 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
     </script>
 </body>
 </html>
+

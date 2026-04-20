@@ -116,15 +116,15 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             font-weight: 500;
         }
 
-        /* Main Chat Area */
-        .chat-main {
+        /* Main Talk Area */
+        .talk-main {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: white;
         }
 
-        .chat-header {
+        .talk-header {
             background: linear-gradient(135deg, #0d3b36 0%, #1a5f58 100%);
             color: white;
             padding: 20px 30px;
@@ -134,25 +134,25 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             justify-content: space-between;
         }
 
-        .chat-header .user-info {
+        .talk-header .user-info {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .chat-header .user-avatar {
+        .talk-header .user-avatar {
             width: 40px;
             height: 40px;
             font-size: 14px;
         }
 
-        .chat-header .user-details h3 {
+        .talk-header .user-details h3 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 2px;
         }
 
-        .chat-header .user-details .status {
+        .talk-header .user-details .status {
             font-size: 12px;
             opacity: 0.9;
             display: flex;
@@ -160,19 +160,19 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             gap: 5px;
         }
 
-        .chat-header .status .dot {
+        .talk-header .status .dot {
             width: 6px;
             height: 6px;
             background: #10b981;
             border-radius: 50%;
         }
 
-        .chat-header .actions {
+        .talk-header .actions {
             display: flex;
             gap: 10px;
         }
 
-        .chat-header .btn {
+        .talk-header .btn {
             background: rgba(255,255,255,0.1);
             color: white;
             border: none;
@@ -183,12 +183,12 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             transition: background 0.3s ease;
         }
 
-        .chat-header .btn:hover {
+        .talk-header .btn:hover {
             background: rgba(255,255,255,0.2);
         }
 
-        /* Chat Messages */
-        .chat-messages {
+        /* Talk Messages */
+        .talk-messages {
             flex: 1;
             padding: 30px;
             overflow-y: auto;
@@ -277,8 +277,8 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             text-align: right;
         }
 
-        /* Chat Input */
-        .chat-input {
+        /* Talk Input */
+        .talk-input {
             background: white;
             padding: 25px 30px;
             border-top: 1px solid #e5e7eb;
@@ -287,7 +287,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             align-items: center;
         }
 
-        .chat-input input {
+        .talk-input input {
             flex: 1;
             padding: 15px 20px;
             border: 2px solid #e5e7eb;
@@ -297,11 +297,11 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             transition: border-color 0.3s ease;
         }
 
-        .chat-input input:focus {
+        .talk-input input:focus {
             border-color: #0d3b36;
         }
 
-        .chat-input button {
+        .talk-input button {
             background: linear-gradient(135deg, #0d3b36 0%, #1a5f58 100%);
             color: white;
             border: none;
@@ -315,17 +315,17 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             gap: 8px;
         }
 
-        .chat-input button:hover {
+        .talk-input button:hover {
             transform: translateY(-2px);
         }
 
-        .chat-input button:disabled {
+        .talk-input button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
 
-        .chat-input button i {
+        .talk-input button i {
             font-size: 16px;
         }
 
@@ -360,11 +360,11 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                 display: block;
             }
 
-            .chat-main {
+            .talk-main {
                 width: 100%;
             }
 
-            .chat-messages {
+            .talk-messages {
                 padding: 20px;
                 gap: 15px;
             }
@@ -375,26 +375,26 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                 padding: 12px 16px;
             }
 
-            .chat-input {
+            .talk-input {
                 padding: 20px;
                 gap: 10px;
             }
 
-            .chat-input input {
+            .talk-input input {
                 padding: 12px 16px;
                 font-size: 14px;
             }
 
-            .chat-input button {
+            .talk-input button {
                 padding: 12px 20px;
                 font-size: 14px;
             }
 
-            .chat-header {
+            .talk-header {
                 padding: 15px 20px;
             }
 
-            .chat-header .user-details h3 {
+            .talk-header .user-details h3 {
                 font-size: 14px;
             }
 
@@ -415,7 +415,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
         }
 
         @media (max-width: 480px) {
-            .chat-messages {
+            .talk-messages {
                 padding: 15px;
             }
 
@@ -425,26 +425,26 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                 font-size: 13px;
             }
 
-            .chat-input {
+            .talk-input {
                 padding: 15px;
                 flex-direction: column;
                 gap: 10px;
             }
 
-            .chat-input input {
+            .talk-input input {
                 width: 100%;
             }
 
-            .chat-input button {
+            .talk-input button {
                 width: 100%;
                 justify-content: center;
             }
 
-            .chat-header .user-info {
+            .talk-header .user-info {
                 gap: 10px;
             }
 
-            .chat-header .user-avatar {
+            .talk-header .user-avatar {
                 width: 35px;
                 height: 35px;
                 font-size: 12px;
@@ -467,23 +467,23 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
 
         /* Scrollbar Styling */
         .users-list::-webkit-scrollbar,
-        .chat-messages::-webkit-scrollbar {
+        .talk-messages::-webkit-scrollbar {
             width: 6px;
         }
 
         .users-list::-webkit-scrollbar-track,
-        .chat-messages::-webkit-scrollbar-track {
+        .talk-messages::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
 
         .users-list::-webkit-scrollbar-thumb,
-        .chat-messages::-webkit-scrollbar-thumb {
+        .talk-messages::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 3px;
         }
 
         .users-list::-webkit-scrollbar-thumb:hover,
-        .chat-messages::-webkit-scrollbar-thumb:hover {
+        .talk-messages::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
 
@@ -534,7 +534,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                     $hasUsers = true;
                     $initials = strtoupper(substr($user['fname'], 0, 1) . substr($user['lname'], 0, 1));
                 ?>
-                <div class="user-item" onclick="loadUserChat(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['fname'] . ' ' . $user['lname']); ?>')">
+                <div class="user-item" onclick="loadUserTalk(<?php echo $user['id']; ?>, '<?php echo htmlspecialchars($user['fname'] . ' ' . $user['lname']); ?>')">
                     <div class="user-avatar"><?php echo $initials; ?></div>
                     <div class="user-info">
                         <div class="user-name"><?php echo htmlspecialchars($user['fname'] . ' ' . $user['lname']); ?></div>
@@ -553,9 +553,9 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             </div>
         </aside>
 
-        <!-- Main Chat Area -->
-        <main class="chat-main">
-            <header class="chat-header">
+        <!-- Main Talk Area -->
+        <main class="talk-main">
+            <header class="talk-header">
                 <div class="user-info">
                     <button class="mobile-menu-toggle" onclick="toggleSidebar()">
                         <i class="fa-solid fa-bars"></i>
@@ -579,13 +579,13 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                     </div>
                 </div>
                 <div class="actions">
-                    <button class="btn" onclick="refreshChat()">
+                    <button class="btn" onclick="refreshTalk()">
                         <i class="fa-solid fa-refresh"></i>
                     </button>
                 </div>
             </header>
 
-            <div class="chat-messages" id="admin-chat-window">
+            <div class="talk-messages" id="admin-talk-window">
                 <div class="empty-state">
                     <i class="fa-solid fa-comments"></i>
                     <h3>Select a Conversation</h3>
@@ -593,7 +593,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
                 </div>
             </div>
 
-            <div class="chat-input" id="reply-container" style="display:none;">
+            <div class="talk-input" id="reply-container" style="display:none;">
                 <input type="text" id="admin-reply" placeholder="Type your response..." onkeypress="handleKeyPress(event)">
                 <button onclick="sendAdminReply()">
                     <i class="fa-solid fa-paper-plane"></i>
@@ -617,7 +617,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             }
         }
 
-        function loadUserChat(id, name) {
+        function loadUserTalk(id, name) {
             activeUserId = id;
             activeUserName = name;
 
@@ -650,10 +650,10 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
         function fetchAdminMessages() {
             if(!activeUserId) return;
 
-            fetch(`backend/chat_handler.php?action=fetch&user_id=${activeUserId}`)
+            fetch(`backend/talk_handler.php?action=fetch&user_id=${activeUserId}`)
                 .then(r => r.text())
                 .then(html => {
-                    const win = document.getElementById('admin-chat-window');
+                    const win = document.getElementById('admin-talk-window');
                     if (html.trim() === '') {
                         win.innerHTML = `
                             <div class="empty-state">
@@ -688,7 +688,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             formData.append('sender', 'admin');
             formData.append('message', text);
 
-            fetch('backend/chat_handler.php?action=send', {
+            fetch('backend/talk_handler.php?action=send', {
                 method: 'POST',
                 body: formData
             })
@@ -711,7 +711,7 @@ $users = $conn->query("SELECT DISTINCT u.id, u.fname, u.lname FROM users u JOIN 
             });
         }
 
-        function refreshChat() {
+        function refreshTalk() {
             if (activeUserId) {
                 fetchAdminMessages();
             }

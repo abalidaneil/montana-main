@@ -334,11 +334,11 @@ footer {
     font-size: 12px;
 }
 
-.chat-btn {
+.talk-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: #2d412e; /* Unique chat green */
+    background: #2d412e; /* Unique talk green */
     color: var(--white);
     padding: 12px 20px;
     border-radius: 30px;
@@ -486,7 +486,7 @@ body {
         font-size: 1.4rem;
     }
 
-    .chat-btn {
+    .talk-btn {
         right: 15px;
         left: auto;
         bottom: 15px;

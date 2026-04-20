@@ -208,6 +208,6 @@
             margin-top: 10px;
         }
 
-        /* Footer & Chat (Same as previous) */
+        /* Footer & Talk (Same as previous) */
         footer { margin-top: auto; text-align: center; padding: 40px; color: var(--text-muted); font-size: 12px; }
-        .chat-btn { position: fixed; bottom: 30px; right: 30px; background: #2d412e; color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; }
+        .talk-btn { position: fixed; bottom: 30px; right: 30px; background: #2d412e; color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 10px; }

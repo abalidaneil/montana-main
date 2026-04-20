@@ -120,7 +120,7 @@ if (!isset($_SESSION['user_id'])) {
         <a href="dashboard.php" class="nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
         <a href="fund.php" class="nav-link"><i class="fa-solid fa-wallet"></i> Fund Account</a>
         <a href="withdraw.php" class="nav-link"><i class="fa-solid fa-money-bill-transfer"></i> Withdraw</a>
-        <a href="chat.php" class="nav-link"><i class="fa-solid fa-headset"></i> Live Support</a>
+        <a href="talk.php" class="nav-link"><i class="fa-solid fa-headset"></i> Live Support</a>
     </div>
 
     <div class="main-content">

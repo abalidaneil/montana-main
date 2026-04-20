@@ -43,7 +43,7 @@ if ($action == 'fetch') {
     }
 }
 
-// // ACTION: FETCH MESSAGES
+// // ACTION: FETCH messages
 // if ($action == 'fetch') {
 //     $user_id = $_GET['user_id'];
 //     $result = $conn->query("SELECT * FROM messages WHERE user_id = '$user_id' ORDER BY created_at ASC");

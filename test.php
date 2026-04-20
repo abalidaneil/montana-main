@@ -32,7 +32,7 @@ $withdrawals = $conn->query("SELECT w.*, u.fname, u.lname FROM withdrawals w JOI
     
     <nav>
         <a href="admin_dashboard.php">Refresh Dashboard</a> | 
-        <a href="admin_chat_list.php"><b>OPEN SUPPORT CHATS</b></a> | 
+        <a href="admin_talk_list.php"><b>OPEN SUPPORT CHATS</b></a> | 
         <a href="backend/admin_logout.php">Logout</a>
     </nav>
 
