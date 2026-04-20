@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First World Choice - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/profile.css">
+     <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-building-columns logo-icon"></i>
+            <span style="font-weight: 700; font-size: 20px;">FirstWorld</span>
+        </div>
+        <a href="dashboard.php" class="nav-item"><i class="fa-solid fa-layer-group"></i> Dashboard <i class="fa-solid fa-chevron-right arrow"></i></a>
+        <a href="loan.php" class="nav-item"><i class="fa-solid fa-laptop-code"></i> Loans <i class="fa-solid fa-chevron-right arrow"></i></a>
+        <a href="fund.php" class="nav-item"><i class="fa-solid fa-sliders"></i> Fund Account <i class="fa-solid fa-chevron-right arrow"></i></a>
+        <a href="withdraw.php" class="nav-item"><i class="fa-solid fa-sliders"></i> Withdrawal <i class="fa-solid fa-chevron-down arrow"></i></a>
+        <a href="trans.html" class="nav-item"><i class="fa-solid fa-earth-americas"></i> Transfer <i class="fa-solid fa-chevron-right arrow"></i></a>
+        <a href="backend/logout.php" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> Logout <i class="fa-solid fa-chevron-right arrow"></i></a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <i class="fa-solid fa-bars" style="font-size: 20px; cursor: pointer;"></i>
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #aaa;"></i>
+                    <input type="text" placeholder="Search here...">
+                </div>
+            </div>
+            <div class="user-profile">
+                <span>Hello, <strong>abali</strong></span>
+                <img src="https://via.placeholder.com/35" alt="Profile">
+            </div>
+        </header>
+
+        <div class="content-body">
+            <h1>Profile</h1>
+
+            <div class="alert-box">
+                Your account is not yet verified. <a href="#" style="color: inherit; font-weight: 600;">Click here</a> to continue
+            </div>
+
+            <div class="profile-card">
+                <div class="cover-photo"></div>
+                <div class="profile-summary">
+                    <img src="https://via.placeholder.com/100" class="pfp-main" alt="User">
+                    <div class="summary-info">
+                        <div>
+                            <div class="name">abali daniel</div>
+                            <div class="label">Savings Account</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 15px; color: #555;">abalidaniel550@gmail.com</div>
+                            <div class="label">Email</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-card">
+                <div class="tabs">
+                    <div class="tab active">Account</div>
+                    <div class="tab">Athentication</div>
+                    <div class="tab">Setting</div>
+                    <div class="tab">Change Avatar</div>
+                </div>
+
+                <div class="details-content">
+                    <div class="section-block">
+                        <div class="section-title">Account Description</div>
+                        <div class="section-value">i want to save money</div>
+                    </div>
+
+                    <div class="section-block">
+                        <div class="section-title">Account Number</div>
+                        <div class="section-value">9873517932</div>
+                    </div>
+
+                    <div class="section-block">
+                        <div class="section-title">Account Type</div>
+                        <div class="section-value">Savings Account</div>
+                    </div>
+
+                    <div class="section-block" style="margin-top: 40px;">
+                        <div class="section-title" style="font-size: 16px;">Personal Information</div>
+                        <div class="info-list">
+                            <div class="info-row"><div class="info-key">Name :</div> <div class="info-val">abali daniel</div></div>
+                            <div class="info-row"><div class="info-key">Email :</div> <div class="info-val">abalidaniel550@gmail.com</div></div>
+                            <div class="info-row"><div class="info-key">Phone Number :</div> <div class="info-val">08139988356</div></div>
+                            <div class="info-row"><div class="info-key">Nationality :</div> <div class="info-val">Nigeria</div></div>
+                            <div class="info-row"><div class="info-key">DOB :</div> <div class="info-val">04/03/2006</div></div>
+                            <div class="info-row"><div class="info-key">Occupation :</div> <div class="info-val"></div></div>
+                            <div class="info-row"><div class="info-key">Address :</div> <div class="info-val">azikoro</div></div>
+                            <div class="info-row"><div class="info-key">Gender :</div> <div class="info-val">Male</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>Copyright © firstworldchoice.com 2026</footer>
+    </div>
+
+    <div class="chat-btn">
+        <div style="width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;"></div>
+        Chat <i class="fa-solid fa-comment"></i>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+:root {
+            --dark-green: #0a2e28; /* The primary brand green */
+            --box-bg: #103831;     /* Slightly lighter for the card */
+            --accent: #d1f366;     /* Brand accent color */
+            --text-white: #ffffff;
+            --input-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        /* Background image with a dark overlay */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background-color: var(--box-bg);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: var(--text-white);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Simple CSS Logo Icon */
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            border-left: 3px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+        }
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-left: 3px solid var(--accent);
+            top: -5px;
+            left: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: left;
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background-color: var(--input-bg);
+            color: var(--dark-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-bottom: 25px;
+        }
+
+        .btn-submit:hover {
+            background-color: #f0f0f0;
+        }
+
+        .signup-text {
+            font-size: 0.85rem;
+        }
+
+        .signup-text a {
+            color: var(--text-white);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Responsive tweak */
+        @media (max-width: 480px) {
+            .login-card {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }

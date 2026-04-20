@@ -1,0 +1,145 @@
+:root {
+            --brand-green: #0d3a35;
+            --white: #ffffff;
+            --text-muted: #e0e0e0;
+            --input-radius: 6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Background image mimicking the desk/coffee scene */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background-color: var(--brand-green);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .register-container {
+            max-width: 650px; /* Wider for the registration form */
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-section h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: #4ade80; /* Light green accent for the icon */
+            font-size: 2rem;
+        }
+
+        .auth-container h2 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styling */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            /* margin-bottom: 15px; */
+        }
+
+        .form-group {
+            /* margin-bottom: 15px; */
+            flex: 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--input-radius);
+            border: none;
+            font-size: 0.95rem;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .forgot-link {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--white);
+            color: var(--brand-green);
+            border: none;
+            border-radius: var(--input-radius);
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #f0f0f0;
+        }
+
+        .switch-text {
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .switch-text a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
