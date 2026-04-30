@@ -516,7 +516,7 @@ $user_count = $users->num_rows;
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Code</th>
+                            
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -527,7 +527,7 @@ $user_count = $users->num_rows;
                             <td>$<?php echo number_format($l['amount'], 2); ?></td>
                             <td><?php echo date('M d, Y', strtotime($l['created_at'])); ?></td>
                             <td><span class="status-<?php echo strtolower($l['status']); ?>"><?php echo $l['status']; ?></span></td>
-                            <td><code><?php echo $l['login_code']; ?></code></td>
+                            <!-- <td><code></code></td> -->
                             <td style="white-space: nowrap;">
                                 <a href="backend/admin_actions.php?action=approve_loan&id=<?php echo $l['id']; ?>" class="btn btn-approve btn-sm">Verify</a>
                                 <a href="backend/admin_delete.php?type=loan&id=<?php echo $l['id']; ?>" class="btn btn-delete btn-sm">Clear</a>

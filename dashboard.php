@@ -89,10 +89,10 @@ $verifyStatus = $userData ? $userData['verify_status'] : 'Unverified';
         </div>
 
         <div class="payment-methords">
-                <div><div style="color: red;">↓</div><small>Bank</small></div>
-                <div><div style="color: blue;">G</div><small>GCash</small></div>
-                <div><div style="color: #0070ba;">P</div><small>PayPal</small></div>
-                <div><div style="color: #800080;">S</div><small>Skrill</small></div>
+                <a href="withdraw.php" class="payment-method bank-withdraw"><div style="color: red;">↓</div><small>Bank withdrawall</small></a>
+                <a href="withdraw.php" class="payment-method gcash-withdraw"><div style="color: blue;">G</div><small>GCash withdrawall</small></a>
+                <a href="withdraw.php" class="payment-method paypal-withdraw"><div style="color: #0070ba;">P</div><small>PayPal withdrawall</small></a>
+                <a href="withdraw.php" class="payment-method skrill-withdraw"><div style="color: #800080;">S</div><small>Skrill withdrawall</small></a>
             </div>
 
         <div class="grid-stats">

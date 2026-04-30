@@ -126,6 +126,13 @@ if ($query && $query->num_rows > 0) {
                         And get your routing number form you agent
                     </p>
 
+                    <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_routing'): ?>
+                        <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #f5c6cb;">
+                            <i class="fa-solid fa-circle-exclamation"></i> 
+                            <strong>Invalid Routing Number:</strong> Contact your agent for your routing number. The routing number you entered does not match our records.
+                        </div>
+                    <?php endif; ?>
+
                     <div class="form-group">
                         <label>Amount</label>
                         <div class="input-wrapper">

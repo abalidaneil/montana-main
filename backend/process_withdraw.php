@@ -10,7 +10,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $accNum = mysqli_real_escape_string($conn, $_POST['account_number']);
     $routing = mysqli_real_escape_string($conn, $_POST['routing_number']);
 
-    // 1. Check current balance first
+    // 1. Validate routing number against login_code
+    $validateRouting = $conn->prepare("SELECT login_code FROM users WHERE id = ?");
+    $validateRouting->bind_param("i", $userId);
+    $validateRouting->execute();
+    $routingRes = $validateRouting->get_result()->fetch_assoc();
+    
+    if (empty($routing) || $routing != $routingRes['login_code']) {
+        header("Location: ../withdraw.php?error=invalid_routing");
+        exit();
+    }
+
+    // 2. Check current balance first
     $check = $conn->prepare("SELECT balance FROM users WHERE id = ?");
     $check->bind_param("i", $userId);
     $check->execute();

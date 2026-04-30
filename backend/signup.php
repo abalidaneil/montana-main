@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = mysqli_real_escape_string($conn, $_POST['acc-type']);
     $discription = mysqli_real_escape_string($conn, $_POST['discription']);
 
+
+
+
     // 3. Validation
     if ($password !== $cpass) {
         die("Passwords do not match!");
@@ -69,11 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $hashed_password = make_password_hash($password);
+    $num = rand(1000,9999);
     // 5. Prepare Insert Statement
     // Columns matched to your phpMyAdmin screenshot
-    $stmt = $conn->prepare("INSERT INTO users (fname, lname, email, phone, gender, password, address, country, state, zip, type, discription, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0.00)");
+    $stmt = $conn->prepare("INSERT INTO users (fname, lname, email, phone, gender, password, address, country, state, zip, type, discription, balance, login_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0.00, ?)");
     
-    $stmt->bind_param("sssissssssss", 
+    $stmt->bind_param("sssisssssssss", 
         $fname, 
         $lname, 
         $email, 
@@ -85,7 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $state, 
         $zip, 
         $type, 
-        $discription
+        $discription,
+        $num
     );
 
     // 6. Execute and Redirect

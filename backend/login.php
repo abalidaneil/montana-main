@@ -44,11 +44,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // 4. Verify the password hash
         if (verify_password($password, $user['password'])) {
+            // Generate a 4-digit login code
+            $login_code = rand(1000, 9999);
+            
+            // Update the login_code in the database
+            $update_stmt = $conn->prepare("UPDATE users SET login_code = ? WHERE id = ?");
+            $update_stmt->bind_param("ii", $login_code, $user['id']);
+            $update_stmt->execute();
+            $update_stmt->close();
+            
             // Success! Create the session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_fname'] = $user['fname'];
             $_SESSION['user_lname'] = $user['lname'];
             $_SESSION['user_balance'] = $user['balance'];
+            $_SESSION['login_code'] = $login_code;
             
             // Redirect to your future dashboard
             header("Location: ../dashboard.php"); 

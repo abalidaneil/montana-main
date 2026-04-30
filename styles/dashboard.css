@@ -120,6 +120,46 @@
             padding-top: 20px;
         }
 
-        div.payment-methords div{
+        div.payment-methords a.payment-method{
             padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+        }
+
+        a.payment-method.bank-withdraw {
+            color: black;
+            padding: 20px;
+            background-color: #ffcccc;
+            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.2);
+            border: 2px solid #ff6b6b;
+        }
+
+        a.payment-method.gcash-withdraw {
+            color: black  !important;
+            padding: 20px !important;
+            background-color: #99ccff !important;
+            box-shadow: 0 4px 8px rgba(77, 148, 255, 0.2) !important;
+            border: 2px solid #4d94ff !important;
+        }
+
+        a.payment-method.paypal-withdraw {
+            color: black !important;
+            padding: 20px !important;
+            background-color: #80c4ff !important;
+            box-shadow: 0 4px 8px rgba(0, 112, 186, 0.2) !important;
+            border: 2px solid #0070ba !important;
+        }
+
+        a.payment-method.skrill-withdraw {
+            color: black !important;
+            padding: 20px !important;
+            background-color: #d9b3ff !important;
+            box-shadow: 0 4px 8px rgba(179, 0, 179, 0.2) !important;
+            border: 2px solid #b300b3 !important;
         }
