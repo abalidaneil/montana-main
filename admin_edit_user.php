@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "sqli.php";
+require_once "config/currency_helper.php";
 
 $id = $_GET['id'];
 $user_data = $conn->query("SELECT * FROM users WHERE id = $id")->fetch_assoc();
@@ -9,8 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fname = $_POST['fname'];
     $balance = $_POST['balance'];
     $type = $_POST['type'];
+    $currency = $_POST['currency'];
 
-    $conn->query("UPDATE users SET fname='$fname', balance='$balance', type='$type' WHERE id=$id");
+    $conn->query("UPDATE users SET fname='$fname', balance='$balance', type='$type', currency='$currency' WHERE id=$id");
     header("Location: admin_dashboard.php#users");
 }
 ?>
@@ -32,13 +34,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>First Name</label>
             <input type="text" name="fname" value="<?php echo $user_data['fname']; ?>">
             
-            <label>Account Balance ($)</label>
+            <label>Account Balance</label>
             <input type="number" step="0.01" name="balance" value="<?php echo $user_data['balance']; ?>">
             
             <label>Account Type</label>
             <select name="type">
                 <option value="savings" <?php if($user_data['type'] == 'savings') echo 'selected'; ?>>Savings</option>
                 <option value="checking" <?php if($user_data['type'] == 'checking') echo 'selected'; ?>>Checking</option>
+            </select>
+
+            <label>Currency</label>
+            <select name="currency">
+                <?php 
+                $currencies = getAllCurrencies();
+                $user_currency = !empty($user_data['currency']) ? $user_data['currency'] : 'USD';
+                foreach($currencies as $curr): 
+                    $symbol = getCurrencySymbol($curr);
+                ?>
+                    <option value="<?php echo $curr; ?>" <?php if($user_currency == $curr) echo 'selected'; ?>>
+                        <?php echo $curr; ?> (<?php echo $symbol; ?>)
+                    </option>
+                <?php endforeach; ?>
             </select>
             
             <button type="submit">Save Changes</button>

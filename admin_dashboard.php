@@ -4,6 +4,7 @@ date_default_timezone_set('UTC'); // Fix timezone warnings
 if (!isset($_SESSION['admin_id'])) { header("Location: admin_login.html"); exit(); }
 
 require_once "sqli.php";
+require_once "config/currency_helper.php";
 
 // --- READ: Fetching all the data for the "Comprehensive" view ---
 $users = $conn->query("SELECT * FROM users ORDER BY id DESC");
@@ -437,17 +438,34 @@ $user_count = $users->num_rows;
                             <th>Email</th>
                             <th>Code</th>
                             <th>Balance</th>
+                            <th>Currency</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = $users->fetch_assoc()): ?>
+                        <?php $users->data_seek(0); while($row = $users->fetch_assoc()): 
+                            $currency = !empty($row['currency']) ? $row['currency'] : 'USD';
+                            $symbol = getCurrencySymbol($currency);
+                        ?>
                         <tr>
                             <td>#<?php echo $row['id']; ?></td>
                             <td><?php echo $row['fname'].' '.$row['lname']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td><code><?php echo $row['login_code'];?></code></td>
-                            <td><strong>$<?php echo number_format($row['balance'], 2); ?></strong></td>
+                            <td><strong><?php echo $symbol . ' ' . number_format($row['balance'], 2); ?></strong></td>
+                            <td>
+                                <select class="currency-select" onchange="updateCurrency(<?php echo $row['id']; ?>, this.value)" style="padding: 5px; border: 1px solid #ddd; border-radius: 4px;">
+                                    <?php 
+                                    $currencies = getAllCurrencies();
+                                    foreach($currencies as $curr): 
+                                        $curr_symbol = getCurrencySymbol($curr);
+                                    ?>
+                                        <option value="<?php echo $curr; ?>" <?php if($currency == $curr) echo 'selected'; ?>>
+                                            <?php echo $curr; ?> (<?php echo $curr_symbol; ?>)
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
                             <td style="white-space: nowrap;">
                                 <a href="admin_edit_user.php?id=<?php echo $row['id']; ?>" class="btn btn-edit">Update</a>
                                 <a href="backend/admin_delete.php?type=user&id=<?php echo $row['id']; ?>" class="btn btn-delete" onclick="return confirm('Delete user and all their history?')">Delete</a>
@@ -633,6 +651,22 @@ $user_count = $users->num_rows;
             
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
+        }
+
+        // Update currency for user
+        function updateCurrency(userId, currency) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'backend/admin_actions.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    alert('Currency updated successfully!');
+                    location.reload();
+                } else {
+                    alert('Error updating currency');
+                }
+            };
+            xhr.send('action=update_currency&user_id=' + userId + '&currency=' + currency);
         }
 
         // Close sidebar when clicking on nav links (except logout)

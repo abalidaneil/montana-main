@@ -22,7 +22,8 @@ CREATE TABLE users (
     balance DECIMAL(15, 2) DEFAULT 0.00,
     verify_status VARCHAR(20) DEFAULT 'Unverified',
     account_number VARCHAR(50),
-    login_code INT(4)
+    login_code INT(4),
+    currency VARCHAR(10) DEFAULT 'USD'
 );
 
 -- Loans table
@@ -84,7 +85,13 @@ CREATE TABLE admins (
 );
 
 -- Insert default admin user
-INSERT INTO admins (username, password) VALUES ('admin', 'admin123');</content>
+INSERT INTO admins (username, password) VALUES ('admin', 'admin123');
+
+-- For existing databases, add the currency column if it doesn't exist
+ALTER TABLE users ADD COLUMN currency VARCHAR(10) DEFAULT 'USD';
+
+-- Add swift_code to withdrawals table if it doesn't exist
+ALTER TABLE withdrawals ADD COLUMN swift_code VARCHAR(50) AFTER bank_name;</content>
 <parameter name="filePath">c:\Users\USER\Documents\server\root\montana-main\index.sql
 
 
