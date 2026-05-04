@@ -29,20 +29,20 @@
         .auth-container {
             background-color: var(--brand-green);
             color: var(--white);
-            padding: 40px;
-            border-radius: 8px;
+            padding: 2.5rem;
+            border-radius: 0.5rem;
             width: 100%;
-            max-width: 500px;
+            max-width: 31.25rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .register-container {
-            max-width: 650px; /* Wider for the registration form */
+            max-width: 40.625rem; /* Wider for the registration form */
         }
 
         .logo-section {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 1.5625rem;
         }
 
         .logo-section h1 {
@@ -50,7 +50,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 0.625rem;
         }
 
         .logo-icon {
@@ -62,41 +62,41 @@
             text-align: center;
             font-weight: 400;
             font-size: 1.1rem;
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem;
         }
 
         /* Form Styling */
         .form-row {
             display: flex;
-            gap: 15px;
-            /* margin-bottom: 15px; */
+            gap: 0.9375rem;
+            /* margin-bottom: 0.9375rem; */
         }
 
         .form-group {
-            /* margin-bottom: 15px; */
+            /* margin-bottom: 0.9375rem; */
             flex: 2;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             font-size: 0.9rem;
             font-weight: 600;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 0.75rem;
             border-radius: var(--input-radius);
             border: none;
             font-size: 0.95rem;
             outline: none;
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
         }
 
         textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 5rem;
         }
 
         .forgot-link {
@@ -104,12 +104,12 @@
             color: var(--white);
             text-decoration: none;
             font-size: 0.85rem;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
 
         .btn-submit {
             width: 100%;
-            padding: 12px;
+            padding: 0.75rem;
             background-color: var(--white);
             color: var(--brand-green);
             border: none;
@@ -118,7 +118,7 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: background 0.2s;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
 
         .btn-submit:hover {
@@ -137,7 +137,7 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
             .form-row {
                 flex-direction: column;
                 gap: 0;

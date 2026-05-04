@@ -154,6 +154,20 @@ if ($query && $query->num_rows > 0) {
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label>Bank Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="Bank_Name" placeholder="Bank Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Swift Code</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="Swift_code" placeholder="Swift Code" required>
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn-submit" onclick="return confirm('Make sure you collect your routing number for you agent')">Proceed</button>
                 </div>
             </form>

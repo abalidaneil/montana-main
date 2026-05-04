@@ -505,6 +505,42 @@ $user_count = $users->num_rows;
             </div>
         </div>
 
+        <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Amount</th>
+            <th>Bank Name</th>
+            <th>Swift Code</th>
+            <th>Account Number</th>
+            <th>Routing Number</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = $withdraws->fetch_assoc()): ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['fname'] . ' ' . $row['lname']; ?></td>
+                <td>$<?php echo number_format($row['amount'], 2); ?></td>
+                <td><?php echo htmlspecialchars($row['bank_name'] ?? 'N/A'); ?></td>
+                <td><?php echo htmlspecialchars($row['swift_code'] ?? 'N/A'); ?></td>
+                <td><?php echo $row['account_number']; ?></td>
+                <td><?php echo $row['routing_number']; ?></td>
+                <td><?php echo $row['status']; ?></td>
+                <td><?php echo date('M d, Y', strtotime($row['created_at'])); ?></td>
+                <td>
+                    <a href="admin_actions.php?action=approve&type=withdrawal&id=<?php echo $row['id']; ?>" class="btn btn-approve">Approve</a>
+                    <a href="admin_actions.php?action=decline&type=withdrawal&id=<?php echo $row['id']; ?>" class="btn btn-delete">Decline</a>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
         <!-- Loan Requests Section -->
         <div class="section-card" id="loans">
             <h2><i class="fas fa-file-contract"></i> Loan Requests</h2>

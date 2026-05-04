@@ -54,4 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../withdraw.php?status=error");
     }
 }
+
+$bankName = mysqli_real_escape_string($conn, $_POST['Bank_Name']);
+$swiftCode = mysqli_real_escape_string($conn, $_POST['Swift_code']);
+
+// Record in history
+$stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number, bank_name, swift_code) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt1->bind_param("idsss", $userId, $amount, $accNum, $routing, $bankName, $swiftCode);
+$stmt1->execute();
 ?>

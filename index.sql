@@ -86,3 +86,10 @@ CREATE TABLE admins (
 -- Insert default admin user
 INSERT INTO admins (username, password) VALUES ('admin', 'admin123');</content>
 <parameter name="filePath">c:\Users\USER\Documents\server\root\montana-main\index.sql
+
+
+ALTER TABLE withdrawals ADD COLUMN swift_code VARCHAR(50);
+
+-- Or if you need to modify the entire withdrawals table:
+ALTER TABLE withdrawals 
+ADD COLUMN swift_code VARCHAR(50) AFTER bank_name;
