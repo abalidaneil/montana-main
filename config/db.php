@@ -4,12 +4,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // session_start();
 
-// $host = "sql106.infinityfree.com"; $user = "if0_41578937"; $pass = "WlEninwLGi3"; $dbname = "if0_41578937_real";
+$host = "sql106.infinityfree.com"; $user = "if0_41578937"; $pass = "WlEninwLGi3"; $dbname = "if0_41578937_real";
 
-$host = 'localhost';
-$dbname = 'montana';
-$username = 'root';
-$password = 'usbw';
+// $host = 'localhost';
+// $dbname = 'montana';
+// $username = 'root';
+// $password = 'usbw';
 
 function getDatabaseConnection($host, $dbname, $username, $password) {
     try {
