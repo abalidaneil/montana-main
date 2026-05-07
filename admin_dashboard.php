@@ -509,8 +509,8 @@ $user_count = $users->num_rows;
                             <td><?php echo date('M d, Y', strtotime($row['created_at'])); ?></td>
                             <td><?php echo $row['fname']; ?><br><small><?php echo $row['email']; ?></small></td>
                             <td><strong>$<?php echo number_format($row['amount'], 2); ?></strong></td>
-                            <td><?php echo htmlspecialchars($row['bank_name'] ?? 'N/A'); ?></td>
-                            <td><?php echo htmlspecialchars($row['swift_code'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars(isset($row['bank_name']) ? $row['bank_name'] : 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars(isset($row['swift_code']) ? $row['swift_code'] : 'N/A'); ?></td>
                             <td><code><?php echo $row['account_number']; ?></code></td>
                             <td><code><?php echo $row['routing_number']; ?></code></td>
                             <td><span class="status-<?php echo strtolower($row['status']); ?>"><?php echo $row['status']; ?></span></td>

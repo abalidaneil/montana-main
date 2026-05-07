@@ -3,31 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart and simple online banking with Firstworldchoice">
+    <meta name="theme-color" content="#0a2e28">
     <title>Firstworldchoice – Smart Online Banking</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <style>
+        :root {
+            --dark-green: #0a2e28;
+            --accent-green: #d1f366;
+            --muted-green: #1a423b;
+            --text-white: #ffffff;
+            --text-muted: #a0b1ad;
+            --card-bg: #113a33;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: var(--dark-green);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        p, a, span {
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        /* Utility */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--dark-green);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            touch-action: manipulation;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:active {
+            background-color: #b5d854;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        .nav-spacer {
+            flex: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 0 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+            background: radial-gradient(circle at center, #14463c 0%, var(--dark-green) 70%);
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            margin: 0 auto 24px;
+            font-size: 16px;
+            max-width: 600px;
+        }
+
+        .email-signup {
+            display: flex;
+            max-width: 100%;
+            margin: 0 auto 32px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px;
+            border-radius: 8px;
+            gap: 4px;
+        }
+
+        .email-signup input {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            flex-grow: 1;
+            outline: none;
+            font-size: 14px;
+            min-width: 0;
+        }
+
+        .email-signup input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-signup button {
+            padding: 12px 20px;
+            white-space: nowrap;
+        }
+
+        /* Card Visuals */
+        .hero-cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+            gap: 0;
+            perspective: 1000px;
+        }
+
+        .card-mockup {
+            width: 120px;
+            height: 180px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #d1f366 0%, #88a825 100%);
+            margin: 0 -20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .card-mockup.center {
+            z-index: 2;
+            background: #2b5c54;
+            margin: 0 -10px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .section-heading {
+            color: var(--accent-green);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 32px;
+            line-height: 1.2;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 20px;
+        }
+
+        .feature-item i {
+            font-size: 32px;
+            color: var(--accent-green);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Alternating Content Sections */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .content-section.reverse {
+            flex-direction: column;
+        }
+
+        .content-text {
+            width: 100%;
+        }
+
+        .content-text h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .content-text p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .content-image {
+            width: 100%;
+            background: var(--muted-green);
+            min-height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ui-mockup {
+            background: white;
+            width: 90%;
+            height: 90%;
+            min-height: 200px;
+            border-radius: 8px;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: #444;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Integration Section */
+        .integrations {
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .integration-header h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .integration-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .integration-logos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .int-card {
+            background: var(--muted-green);
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--muted-green);
+            padding: 32px 0;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+
+        .footer-email {
+            margin-top: 12px;
+        }
+
+        /* Tablet Screens (48rem = 768px) */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-cards {
+                gap: 0;
+            }
+
+            .card-mockup {
+                width: 150px;
+                height: 220px;
+                margin: 0 -30px;
+            }
+
+            .card-mockup.center {
+                margin: 0 -15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .content-section {
+                flex-direction: row;
+                gap: 48px;
+                text-align: left;
+                align-items: flex-start;
+            }
+
+            .content-section.reverse {
+                flex-direction: row-reverse;
+            }
+
+            .content-text {
+                flex: 1;
+            }
+
+            .content-image {
+                flex: 1;
+                min-height: 300px;
+            }
+
+            .testimonial {
+                flex-direction: row;
+                text-align: left;
+                padding: 32px;
+            }
+
+            .user-avatar {
+                width: 120px;
+                height: 120px;
+                flex-shrink: 0;
+            }
+
+            .integration-logos {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .content-text h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Desktop Screens (64rem = 1024px) */
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 42px;
+            }
+
+            .content-text h2 {
+                font-size: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .integration-logos {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+            .email-signup {
+                max-width: 400px;
+            }
+
+            .card-mockup {
+                width: 180px;
+                height: 250px;
+                margin: 0 -40px;
+            }
+
+            .card-mockup.center {
+                margin: 0 -20px;
+            }
+        }
+
+        /* Extra Large Screens */
+        @media (min-width: 1440px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .section-title {
+                font-size: 48px;
+            }
+
+            .content-text h2 {
+                font-size: 48px;
+            }
+        }
+
+        /* Touch-friendly adjustments */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-primary {
+                min-height: 44px;
+                padding: 12px 28px;
+            }
+
+            .int-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header class="container">
     <nav>
         <div class="logo">Firstworldchoice</div>
-        <!-- <div class="nav-links">
-            <a href="#">Overview</a>
-            <a href="#">Cards</a>
-            <a href="#">Features</a>
-        </div> -->
-        <a href="login.html" class="btn-primary" style="padding: 8px 20px;">Get Started</a>
+        <div class="nav-spacer"></div>
+        <a href="login.html" class="btn-primary">Get Started</a>
     </nav>
 </header>
 
 <section class="hero">
     <div class="container">
-        <p style="color: var(--accent-green); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;">All-in-one banking solution</p>
-        <h1>Smart and simple<br>online banking</h1>
-        <p>Get the most advanced banking experience with our smart features and simple interface. Manage your money anywhere, anytime.</p>
+        <p class="hero-subtitle">All-in-one banking solution</p>
+        <h1>Smart and simple online banking</h1>
+        <p class="hero-description">Get the most advanced banking experience with our smart features and simple interface. Manage your money anywhere, anytime.</p>
         
         <div class="email-signup">
-            <input type="text" placeholder="Your email address">
+            <input type="email" placeholder="Your email address" aria-label="Email address">
             <button class="btn-primary">Sign up</button>
         </div>
 
@@ -39,56 +540,56 @@
     </div>
 </section>
 
-<section class="container">
-    <div style="text-align: center; margin-top: 80px;">
-        <p style="color: var(--accent-green);">Why choose us?</p>
-        <h2 style="font-size: 2rem;">The only fintech app<br>you'll ever need</h2>
-    </div>
+<section class="features-section">
+    <div class="container">
+        <p class="section-heading">Why choose us?</p>
+        <h2 class="section-title">The only fintech app you'll ever need</h2>
 
-    <div class="features-grid">
-        <div class="feature-item">
-            <i>∞</i>
-            <h3>Check balances</h3>
-            <p>Real-time updates on your spending and savings.</p>
-        </div>
-        <div class="feature-item">
-            <i>⇄</i>
-            <h3>Faster payouts</h3>
-            <p>Move money between accounts in seconds.</p>
-        </div>
-        <div class="feature-item">
-            <i>🔒</i>
-            <h3>Secure transfers</h3>
-            <p>End-to-end encryption for every transaction.</p>
-        </div>
-        <div class="feature-item">
-            <i>💳</i>
-            <h3>Physical & Virtual</h3>
-            <p>Choose the card that fits your lifestyle.</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i>∞</i>
+                <h3>Check balances</h3>
+                <p>Real-time updates on your spending and savings.</p>
+            </div>
+            <div class="feature-item">
+                <i>⇄</i>
+                <h3>Faster payouts</h3>
+                <p>Move money between accounts in seconds.</p>
+            </div>
+            <div class="feature-item">
+                <i>🔒</i>
+                <h3>Secure transfers</h3>
+                <p>End-to-end encryption for every transaction.</p>
+            </div>
+            <div class="feature-item">
+                <i>💳</i>
+                <h3>Physical & Virtual</h3>
+                <p>Choose the card that fits your lifestyle.</p>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="container content-section">
     <div class="content-text">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Super convenient online banking</h2>
-        <p style="color: var(--text-muted);">Manage your finances effortlessly with our intuitive interface. Everything you need is just a tap away.</p>
+        <h2>Super convenient online banking</h2>
+        <p>Manage your finances effortlessly with our intuitive interface. Everything you need is just a tap away.</p>
     </div>
     <div class="content-image">
         <div class="ui-mockup">
-            <img src="https://unsplash.com/photos/person-working-at-a-desk-with-a-laptop-and-books-Zcp8xN9DnjM" alt="">
+            <img src="https://unsplash.com/photos/person-working-at-a-desk-with-a-laptop-and-books-Zcp8xN9DnjM" alt="Person working on banking app" style="max-width: 100%; height: auto; border-radius: 4px;">
         </div>
     </div>
 </section>
 
 <section class="container content-section reverse">
     <div class="content-text">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Be in complete control over your money</h2>
-        <p style="color: var(--text-muted);">Set limits, track budgets, and get instant notifications. You're the boss of your balance.</p>
+        <h2>Be in complete control over your money</h2>
+        <p>Set limits, track budgets, and get instant notifications. You're the boss of your balance.</p>
     </div>
     <div class="content-image">
         <div class="ui-mockup" style="background: #f4f4f4;">
-            <p><strong>Spending Analysis</strong></p>
+            <p style="color: #333; font-weight: 600; margin-bottom: 12px;"><strong>Spending Analysis</strong></p>
             <div style="margin-top:20px; height:100px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc;"></div>
         </div>
     </div>
@@ -98,15 +599,15 @@
     <div class="testimonial">
         <div class="user-avatar"></div>
         <div>
-            <p style="font-size: 1.2rem; font-style: italic;">"I've been using Firstworldchoice for over a year and it has completely changed how I manage my finances. It's incredibly intuitive."</p>
-            <p style="margin-top: 20px; font-weight: bold;">— Alex Rivers, Freelance Designer</p>
+            <p class="testimonial-text">"I've been using Firstworldchoice for over a year and it has completely changed how I manage my finances. It's incredibly intuitive."</p>
+            <p class="testimonial-author">— Alex Rivers, Freelance Designer</p>
         </div>
     </div>
 </section>
 
 <footer class="container">
     <div class="integrations">
-        <div>
+        <div class="integration-header">
             <h2>Wallet Integrations</h2>
             <p>Connect your favorite tools to sync your data instantly.</p>
         </div>
@@ -117,9 +618,9 @@
             <div class="int-card">Wise</div>
         </div>
     </div>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+    <div class="footer-content">
         <p>Firstworldchoice © 2026. All rights reserved.</p>
-        <p>hello@firstworldchoice.com</p>
+        <p class="footer-email">hello@firstworldchoice.com</p>
     </div>
 </footer>
 

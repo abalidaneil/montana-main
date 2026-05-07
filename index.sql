@@ -49,6 +49,16 @@ CREATE TABLE withdrawals (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Deposits table
+CREATE TABLE deposits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    amount DECIMAL(15, 2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'Approved',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Messages table for chat
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

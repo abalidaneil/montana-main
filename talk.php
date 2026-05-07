@@ -370,7 +370,7 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.html"); exit(); }
                 <a href="loan.php"><i class="fa-solid fa-laptop-code"></i> Loans</a>
                 <a href="fund.php"><i class="fa-solid fa-sliders"></i> Fund Account</a>
                 <a href="withdraw.php"><i class="fa-solid fa-money-bill-transfer"></i> Withdrawal</a>
-                <a href="trans.html"><i class="fa-solid fa-earth-americas"></i> Transfer</a>
+                <a href="transaction.php"><i class="fa-solid fa-earth-americas"></i> Transactions</a>
                 <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
                 <a href="talk.php" class="active"><i class="fa-solid fa-comments"></i> Live Support</a>
                 <a href="backend/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

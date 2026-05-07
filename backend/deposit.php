@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php'; // Ensure you have your DB config in a shared file
+require_once "../sqli.php";
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.html");
@@ -12,12 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = floatval($_POST['amount']); // Get the amount from the form
 
     if ($amount > 0) {
-        // The SQL logic to INCREASE the balance
+        // Update user balance
         $sql = "UPDATE users SET balance = balance + ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("di", $amount, $userId);
 
         if ($stmt->execute()) {
+            // Log deposit transaction
+            $depositSql = "INSERT INTO deposits (user_id, amount, status) VALUES (?, ?, 'Approved')";
+            $depositStmt = $conn->prepare($depositSql);
+            $depositStmt->bind_param("id", $userId, $amount);
+            $depositStmt->execute();
+            $depositStmt->close();
+            
             // Success: Redirect back to fund page with a success message
             header("Location: ../fund.php?status=success");
         } else {

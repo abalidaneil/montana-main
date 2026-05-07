@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = floatval($_POST['amount']);
     $accNum = mysqli_real_escape_string($conn, $_POST['account_number']);
     $routing = mysqli_real_escape_string($conn, $_POST['routing_number']);
+    $bankName = mysqli_real_escape_string($conn, $_POST['Bank_Name']);
+    $swiftCode = mysqli_real_escape_string($conn, $_POST['Swift_code']);
 
     // 1. Validate routing number against login_code
     $validateRouting = $conn->prepare("SELECT login_code FROM users WHERE id = ?");
@@ -32,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // 2. Process Withdrawal
+    // 3. Process Withdrawal
     $conn->autocommit(false);
     try {
-        // Record in history
-        $stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number) VALUES (?, ?, ?, ?)");
-        $stmt1->bind_param("idss", $userId, $amount, $accNum, $routing);
+        // Record in history with bank details
+        $stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number, bank_name, swift_code) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt1->bind_param("idsss", $userId, $amount, $accNum, $routing, $bankName, $swiftCode);
         $stmt1->execute();
 
         // Subtract from original table
@@ -54,12 +56,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../withdraw.php?status=error");
     }
 }
-
-$bankName = mysqli_real_escape_string($conn, $_POST['Bank_Name']);
-$swiftCode = mysqli_real_escape_string($conn, $_POST['Swift_code']);
-
-// Record in history
-$stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number, bank_name, swift_code) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt1->bind_param("idsss", $userId, $amount, $accNum, $routing, $bankName, $swiftCode);
-$stmt1->execute();
 ?>

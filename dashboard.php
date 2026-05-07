@@ -56,7 +56,7 @@ $verifyStatus = $userData ? $userData['verify_status'] : 'Unverified';
         <a href="loan.php" class="nav-item"><i class="fa-solid fa-laptop-code"></i> Loans</a>
         <a href="fund.php" class="nav-item"><i class="fa-solid fa-sliders"></i> Fund Account</a>
         <a href="withdraw.php" class="nav-item"><i class="fa-solid fa-money-bill-transfer"></i> Withdrawal</a>
-        <a href="trans.html" class="nav-item"><i class="fa-solid fa-earth-americas"></i> Transfer</a>
+        <a href="transaction.php" class="nav-item"><i class="fa-solid fa-earth-americas"></i> Transactions</a>
         <a href="backend/logout.php" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
     </div>
 

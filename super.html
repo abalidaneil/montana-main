@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>simple button with popover</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* button style */
+    .popover-trigger {
+      background: #f97316;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 12px 25px rgba(249, 115, 22, 0.35), 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    .popover-trigger:hover {
+      background: #fb923c;
+      box-shadow: 0 16px 28px rgba(249, 115, 22, 0.5), 0 6px 12px rgba(0,0,0,0.25);
+      transform: translateY(-2px);
+    }
+
+    .popover-trigger:active {
+      transform: translateY(2px);
+      box-shadow: 0 8px 15px rgba(249, 115, 22, 0.4), 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* popover base */
+    .popover {
+      position: absolute;
+      bottom: calc(100% + 18px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffff;
+      color: #1e293b;
+      padding: 1.2rem 1.5rem;
+      border-radius: 28px;
+      box-shadow: 0 30px 45px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.3);
+      font-weight: 500;
+      font-size: 1rem;
+      white-space: nowrap;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.2s, transform 0.25s ease;
+      transform: translateX(-50%) translateY(10px);
+      pointer-events: none;
+    }
+
+    /* popover arrow */
+    .popover::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 12px solid #ffffff;
+      filter: drop-shadow(0 6px 6px rgba(0,0,0,0.15));
+    }
+
+    /* visible state */
+    .popover.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .popover-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #0f172a;
+      font-weight: 500;
+    }
+
+    .popover-icon {
+      font-size: 1.3rem;
+    }
+
+    .popover-close {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #64748b;
+      padding: 0.2rem 0.4rem;
+      border-radius: 50%;
+      transition: all 0.15s;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -0.3rem -0.4rem 0 0;
+    }
+
+    .popover-close:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .popover-text {
+      font-size: 0.95rem;
+    }
+
+    /* small subtle hint for mobile */
+    @media (max-width: 480px) {
+      .popover {
+        white-space: normal;
+        min-width: 200px;
+        text-align: center;
+        align-items: center;
+      }
+      .popover-close {
+        align-self: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- button that triggers popover -->
+    <button class="popover-trigger" id="popoverButton">
+      <span>💡</span> What's new?
+    </button>
+
+    <!-- popover structure -->
+    <div class="popover" id="popoverElement" role="tooltip" aria-hidden="true">
+      <button class="popover-close" id="closePopoverBtn" aria-label="Close popover">✕</button>
+      <div class="popover-content">
+        <span class="popover-icon">✨</span>
+        <span class="popover-text">You're all caught up!</span>
+      </div>
+      <div style="font-size:0.8rem; color:#475569; margin-top:0.2rem;">
+        New feature available.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // elements
+      const triggerButton = document.getElementById('popoverButton');
+      const popover = document.getElementById('popoverElement');
+      const closeBtn = document.getElementById('closePopoverBtn');
+
+      // state flag
+      let isPopoverOpen = false;
+
+      // function to open popover
+      function openPopover() {
+        if (!popover || isPopoverOpen) return;
+        popover.classList.add('active');
+        popover.setAttribute('aria-hidden', 'false');
+        isPopoverOpen = true;
+      }
+
+      // function to close popover
+      function closePopover() {
+        if (!popover || !isPopoverOpen) return;
+        popover.classList.remove('active');
+        popover.setAttribute('aria-hidden', 'true');
+        isPopoverOpen = false;
+      }
+
+      // toggle popover when button is clicked
+      function handleTriggerClick(event) {
+        event.stopPropagation();
+        if (isPopoverOpen) {
+          closePopover();
+        } else {
+          openPopover();
+        }
+      }
+
+      // close button inside popover
+      function handleCloseButtonClick(event) {
+        event.stopPropagation();
+        closePopover();
+      }
+
+      // close popover when clicking outside the container
+      function handleOutsideClick(event) {
+        // if popover is open and click is outside the popover and outside the button
+        if (!isPopoverOpen) return;
+
+        const container = document.querySelector('.container');
+        // Check if click target is inside the container (button or popover)
+        if (container && !container.contains(event.target)) {
+          closePopover();
+        }
+      }
+
+      // close popover with Escape key
+      function handleKeyDown(event) {
+        if (event.key === 'Escape' && isPopoverOpen) {
+          event.preventDefault();
+          closePopover();
+          // optionally refocus the trigger button
+          if (triggerButton) {
+            triggerButton.focus();
+          }
+        }
+      }
+
+      // attach event listeners
+      if (triggerButton && popover && closeBtn) {
+        triggerButton.addEventListener('click', handleTriggerClick);
+        closeBtn.addEventListener('click', handleCloseButtonClick);
+        document.addEventListener('click', handleOutsideClick);
+        document.addEventListener('keydown', handleKeyDown);
+      } else {
+        console.warn('Required elements not found');
+      }
+
+      // cleanup not strictly necessary in this demo, but good practice
+      window.addEventListener('beforeunload', () => {
+        document.removeEventListener('click', handleOutsideClick);
+        document.removeEventListener('keydown', handleKeyDown);
+      });
+
+    })();
+  </script>
+</body>
+</html>
