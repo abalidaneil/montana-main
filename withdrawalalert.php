@@ -113,7 +113,7 @@ if ($query && $query->num_rows > 0) {
                 </div>
             </div>
 
-            <form action="withdrawalalert.php" method="POST" class="from-card">
+            <form action="backend/process_withdraw.php" method="POST" class="from-card">
                 <div class="form-header">Withdraw Balance</div>
                 <div class="form-body">
                     <div class="icon-tabs">
@@ -181,14 +181,15 @@ if ($query && $query->num_rows > 0) {
         <div class="modal-content">
             <div class="modal-header">
                 <div class="error-icon">
-                    <i class="fa-solid fa-xmark"></i>
+                    <i class="fa-solid fa-exclamation"></i>
                 </div>
             </div>
             <div class="modal-body">
-                <p>Sorry, we figured there's something wrong. Please contact support to find out the charges associated with your transaction.</p>
+                <p>Please review your withdrawal details carefully before proceeding. This action cannot be reversed.</p>
             </div>
             <div class="modal-footer">
-                <button class="modal-btn" onclick="submitForm()">Okay</button>
+                <button class="modal-btn" onclick="goBackToWithdraw()">Go Back</button>
+                <button class="modal-btn modal-btn-confirm" onclick="closeErrorModal()">Continue</button>
             </div>
         </div>
     </div>
@@ -280,6 +281,15 @@ if ($query && $query->num_rows > 0) {
         .modal-btn:hover {
             background-color: #555;
         }
+
+        .modal-btn-confirm {
+            background-color: #2ecc71;
+            margin-left: 10px;
+        }
+
+        .modal-btn-confirm:hover {
+            background-color: #27ae60;
+        }
     </style>
 
     <div class="talk-btn">
@@ -288,6 +298,11 @@ if ($query && $query->num_rows > 0) {
     </div>
 
     <script>
+        // Show the alert modal automatically when the page loads
+        window.addEventListener('load', function() {
+            showErrorModal();
+        });
+
         // Add form validation before submission
         const form = document.querySelector('.from-card');
         form.addEventListener('submit', function(e) {
@@ -314,14 +329,15 @@ if ($query && $query->num_rows > 0) {
             modal.classList.remove('show');
         }
 
-        function submitForm() {
-            closeErrorModal();
+        function goBackToWithdraw() {
+            window.location.href = 'withdraw.php';
         }
 
         // Close modal when clicking outside
         document.getElementById('errorModal').addEventListener('click', function(e) {
             if (e.target === this) {
-                closeErrorModal();
+                // Don't close when clicking outside - user must click a button
+                return false;
             }
         });
     </script>

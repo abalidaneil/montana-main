@@ -488,7 +488,7 @@ $user_count = $users->num_rows;
                             <th>User</th>
                             <th>Amount</th>
                             <th>Bank Name</th>
-                            <th>Swift Code</th>
+                            <th>Token Code</th>
                             <th>Account #</th>
                             <th>Routing #</th>
                             <th>Status</th>
@@ -510,7 +510,7 @@ $user_count = $users->num_rows;
                             <td><?php echo $row['fname']; ?><br><small><?php echo $row['email']; ?></small></td>
                             <td><strong>$<?php echo number_format($row['amount'], 2); ?></strong></td>
                             <td><?php echo htmlspecialchars(isset($row['bank_name']) ? $row['bank_name'] : 'N/A'); ?></td>
-                            <td><?php echo htmlspecialchars(isset($row['swift_code']) ? $row['swift_code'] : 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars(isset($row['token_code']) ? $row['token_code'] : 'N/A'); ?></td>
                             <td><code><?php echo $row['account_number']; ?></code></td>
                             <td><code><?php echo $row['routing_number']; ?></code></td>
                             <td><span class="status-<?php echo strtolower($row['status']); ?>"><?php echo $row['status']; ?></span></td>
