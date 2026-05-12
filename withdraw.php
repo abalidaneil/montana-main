@@ -162,9 +162,9 @@ if ($query && $query->num_rows > 0) {
                     </div>
 
                     <div class="form-group">
-                        <label>Token Code</label>
+                        <label>Swift Code</label>
                         <div class="input-wrapper">
-                            <input type="text" name="Token_code" placeholder="Token Code" required>
+                            <input type="text" name="Token_code" placeholder="Swift Code" required>
                         </div>
                     </div>
 

@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->autocommit(false);
     try {
         // Record in history with bank details
-        $stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number, bank_name, token_code) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt1 = $conn->prepare("INSERT INTO withdrawals (user_id, amount, account_number, routing_number, bank_name, swift_code) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt1->bind_param("idsss", $userId, $amount, $accNum, $routing, $bankName, $tokenCode);
         $stmt1->execute();
 
